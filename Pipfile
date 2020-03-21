@@ -1,0 +1,14 @@
+[dev-packages]
+gcplogs = {path = ".", editable = true, extras = ["tests", "dev"]}
+sphinx-click = "*"
+click = "*"
+jedi = "*"
+isort = "*"
+
+[packages]
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
