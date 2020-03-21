@@ -1,7 +1,10 @@
 from setuptools import find_packages, setup
 
 install_requires = [
+    "google-api-python-client>=1.8.0",
+    "google-cloud-logging>=1.15.0",
     "Click>=7.0",
+    "click-completion>=0.5.2",
     "termcolor>=1.1.0",
 ]
 
@@ -13,8 +16,8 @@ setup(
     license="MIT",
     author="Zeyad Deeb",
     author_email="zeyad.deeb@icloud.com",
-    description="gcplogs is a simple command line tool to read gcp logs.",
-    long_description="gcplogs is a simple command line tool to read gcp logs.",
+    description="gcplogs is a simple command line tool to read GCP Stackdriver logs.",
+    long_description="gcplogs is a simple command line tool to read GCP Stackdriver logs.",
     keywords="gcp logs",
     packages=find_packages(),
     platforms="any",

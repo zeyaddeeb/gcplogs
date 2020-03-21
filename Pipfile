@@ -1,9 +1,9 @@
 [dev-packages]
 gcplogs = {path = ".", editable = true, extras = ["tests", "dev"]}
-sphinx-click = "*"
+google-api-python-client = "*"
+google-cloud-logging = "*"
 click = "*"
-jedi = "*"
-isort = "*"
+click-completion = "*"
 
 [packages]
 
