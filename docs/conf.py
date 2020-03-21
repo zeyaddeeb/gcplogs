@@ -106,17 +106,6 @@ html_theme_options = {
 #
 html_sidebars = {"**": ["about.html", "localtoc.html", "searchbox.html",]}
 
-# Make it possible to build docs without dependencies
-autodoc_mock_imports = [
-    "autograd",
-    "autograd_gamma",
-    "emcee",
-    "matplotlib",
-    "numpy",
-    "pandas",
-    "progressbar",
-    "scipy",
-]
 
 # -- Extension configuration -------------------------------------------------
 
