@@ -1,0 +1,15 @@
+include CHANGELOG
+include AUTHORS
+include CHANGELOG
+include LICENSE
+include MANIFEST.in
+include setup.cfg
+include setup.py
+
+recursive-include gcplogs *.py
+recursive-include docs *
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .*.sw[a-z]
+recursive-exclude * *.c *.so
