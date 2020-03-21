@@ -1,9 +1,6 @@
 import click
 
-
-@click.group()
-def cli():
-    pass
+cli = click.Group()
 
 
 @cli.group()
