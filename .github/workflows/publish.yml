@@ -1,3 +1,4 @@
+name: gcplogs - publish pypi
 on:
   release:
     types: [created]
