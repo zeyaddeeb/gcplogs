@@ -1,4 +1,4 @@
-name: gcplogs - pytest
+name: test
 
 on: [push]
 
