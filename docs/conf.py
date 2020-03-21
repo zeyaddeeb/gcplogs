@@ -84,7 +84,7 @@ html_theme = "alabaster"
 # documentation.
 #
 html_theme_options = {
-    "analytics_id": "",
+    "analytics_id": "G-FY3BGLNC74",
     "github_user": "zeyaddeeb",
     "github_repo": "gcplogs",
     "github_button": True,
