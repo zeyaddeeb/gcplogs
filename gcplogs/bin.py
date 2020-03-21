@@ -5,11 +5,9 @@ import click_completion
 from termcolor import colored
 
 from ._version import __version__
-from .core import GCPLogs
+from .core import list_available_resources
 
 click_completion.init()
-
-glogs = GCPLogs()
 
 
 def install_callback(ctx, _, value):
@@ -38,9 +36,10 @@ def list():
     pass
 
 
-@list.command("logs")
-def list_logs():
-    pass
+@list.command("resources")
+@click.option("--project", "-p", default="", show_default=True)
+def list_resources(project):
+    print(list_available_resources(project))
 
 
 @cli.command()

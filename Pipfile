@@ -4,6 +4,7 @@ google-api-python-client = "*"
 google-cloud-logging = "*"
 click = "*"
 click-completion = "*"
+grpcio = "*"
 
 [packages]
 

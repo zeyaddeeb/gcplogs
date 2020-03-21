@@ -1,8 +1,10 @@
 import warnings
 
-warnings.filterwarnings("ignore", message="_CLOUD_SDK_CREDENTIALS_WARNING")
+from google.cloud import logging_v2
+
+warnings.filterwarnings("ignore", category=UserWarning)
 
 
-class GCPLogs:
-    def get_log_groups(self):
-        return ["l1", "l2"]
+def list_available_resources(project: str) -> list:
+    client = logging_v2.LoggingServiceV2Client()
+    return [r for r in client.list_monitored_resource_descriptors()]
