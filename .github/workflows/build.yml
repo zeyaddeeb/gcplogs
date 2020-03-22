@@ -17,13 +17,13 @@ jobs:
         uses: dschep/install-pipenv-action@v1
       - name: Install dependencies
         run: |
-          pip install pytest-cov
           pipenv install --dev
+          pipenv install pytest-cov
 
       - name: Test with pytest
         run: |
           pipenv run pytest
-          pytest --cov=./ --cov-report=xml
+          pipenv run pytest --cov=./ --cov-report=xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
