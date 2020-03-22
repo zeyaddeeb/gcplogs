@@ -5,6 +5,7 @@ google-cloud-logging = "*"
 click = "*"
 click-completion = "*"
 grpcio = "*"
+pytest = "*"
 
 [packages]
 
