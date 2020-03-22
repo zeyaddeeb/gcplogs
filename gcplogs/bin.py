@@ -1,3 +1,4 @@
+import functools
 import sys
 
 import click
@@ -5,9 +6,23 @@ import click_completion
 from termcolor import colored
 
 from ._version import __version__
-from .core import list_available_resources
+from .constants import available_resources
+from .core import GCPLogs
 
 click_completion.init()
+
+
+def common_options(f):
+    options = [
+        click.option("--project", "-p", help="List of projects associated with logs",),
+        click.option(
+            "--credentials",
+            "-c",
+            type=click.Path(),
+            help="Path of the credentials file",
+        ),
+    ]
+    return functools.reduce(lambda x, opt: opt(x), options, f)
 
 
 def install_callback(ctx, _, value):
@@ -19,6 +34,7 @@ def install_callback(ctx, _, value):
 
 
 @click.group()
+@click.version_option(prog_name=colored("gcplogs", "cyan"), version=__version__)
 @click.option(
     "--install-completion",
     is_flag=True,
@@ -26,24 +42,15 @@ def install_callback(ctx, _, value):
     expose_value=False,
     help="Install completion for the current shell.",
 )
-@click.version_option(prog_name=colored("gcplogs", "cyan"), version=__version__)
 def cli():
     pass
 
 
-@cli.group()
-def list():
-    pass
-
-
-@list.command("resources")
-@click.option("--project", "-p", default="", show_default=True)
-def list_resources(project):
-    print(list_available_resources(project))
-
-
-@cli.command()
-@click.option("--watch", "-w", default="", show_default=True)
-@click.option("--filter-pattern", "-f", default="", show_default=True)
-def logs(watch, filter_pattern):
-    print(watch, filter_pattern)
+@cli.command("get")
+@click.argument("resources", nargs=-1, type=click.Choice(available_resources))
+@click.option("--filter-pattern", "-f", default=None)
+@click.option("--watch", "-w", is_flag=True)
+@common_options
+def get_logs(resources, watch, filter_pattern, **kwargs):
+    logs = GCPLogs(**kwargs)
+    logs.get_logs(resources, watch, filter_pattern)

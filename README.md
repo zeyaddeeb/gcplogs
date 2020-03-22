@@ -2,7 +2,7 @@
 
 ![build](https://github.com/zeyaddeeb/gcplogs/workflows/build/badge.svg) ![PyPI - License](https://img.shields.io/pypi/l/gcplogs) ![PyPI](https://img.shields.io/pypi/v/gcplogs) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gcplogs) [![codecov](https://codecov.io/gh/zeyaddeeb/gcplogs/branch/master/graph/badge.svg)](https://codecov.io/gh/zeyaddeeb/gcplogs)
 
-`gcplogs` is a simple command line tool for querying logging events from [Google Cloud Logging](https://cloud.google.com/logging/docs) logs.
+`gcplogs` is a simple command line tool for querying logging events from [Google Cloud Logging](https://cloud.google.com/logging/docs).
 
 Features
 --------
@@ -42,18 +42,13 @@ Option 3: If you have gcloud installed, you can use this method, but you might r
 gcloud auth application-default login
 ```
 
-Time options
--------------
-
-While querying for logs you can filter events by `--start` and `-s` .
-
 Filter options
 ----------------
 
 You can use `--filter-pattern` if you want to only retrieve logs which match one Stackdriver Logs Filter pattern.
 
 ``` bash
-gcplogs logs --filter-pattern="textPayload:10.0.0.0/8"
+gcplogs get audited_resource --filter-pattern="textPayload:10.0.0.0/8" --project google-ai
 ```
 
 Full documentation of how to write patterns: https://cloud.google.com/logging/docs/view/logging-query-language
