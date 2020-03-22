@@ -1,11 +1,12 @@
 [dev-packages]
-gcplogs = {path = ".", editable = true, extras = ["tests", "dev"]}
+gcplogs = {path = ".",editable = true,extras = ["tests", "dev"]}
 google-api-python-client = "*"
 google-cloud-logging = "*"
 click = "*"
 click-completion = "*"
 grpcio = "*"
 pytest = "*"
+python-dateutil = "*"
 
 [packages]
 

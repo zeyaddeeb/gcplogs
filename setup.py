@@ -7,6 +7,7 @@ install_requires = [
     "click-completion>=0.5.2",
     "termcolor>=1.1.0",
     "grpcio>=1.27.2",
+    "python-dateutil>=2.8.1",
 ]
 
 
