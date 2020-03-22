@@ -1,4 +1,4 @@
-name: test
+name: build
 
 on: [push]
 
@@ -17,8 +17,19 @@ jobs:
         uses: dschep/install-pipenv-action@v1
       - name: Install dependencies
         run: |
+          pip install pytest-cov
           pipenv install --dev
 
       - name: Test with pytest
         run: |
           pipenv run pytest
+          pytest --cov=./ --cov-report=xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
