@@ -4,9 +4,6 @@
 
 `gcplogs` is a simple command line tool for querying logging events from [Google Cloud Logging](https://cloud.google.com/logging/docs).
 
-Features
---------
-
 Example
 -------
 
