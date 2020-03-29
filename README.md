@@ -2,7 +2,7 @@
 
 ![build](https://github.com/zeyaddeeb/gcplogs/workflows/build/badge.svg) ![PyPI - License](https://img.shields.io/pypi/l/gcplogs) ![PyPI](https://img.shields.io/pypi/v/gcplogs) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gcplogs) [![codecov](https://codecov.io/gh/zeyaddeeb/gcplogs/branch/master/graph/badge.svg)](https://codecov.io/gh/zeyaddeeb/gcplogs)
 
-`gcplogs` is a simple command line tool for querying logging events from [Google Cloud Logging](https://cloud.google.com/logging/docs).
+Inspired by [ `awslogs` ](https://github.com/jorgebastida/awslogs), `gcplogs` is a simple command line tool for querying logging events from [Google Cloud Logging](https://cloud.google.com/logging/docs).
 
 Examples
 -------

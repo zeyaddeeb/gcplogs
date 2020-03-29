@@ -1,6 +1,8 @@
 Welcome to gcplogs's documentation!
 ===================================
 
+Inspired by [ `awslogs` ](https://github.com/jorgebastida/awslogs), `gcplogs` is a simple command line tool for querying logging events from [Google Cloud Logging](https://cloud.google.com/logging/docs).
+
 Examples
 -------
 
