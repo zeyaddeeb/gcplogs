@@ -1,4 +1,9 @@
+import errno
+import os
+import sys
+import time
 import warnings
+from collections import deque
 from datetime import datetime
 from typing import Tuple
 
@@ -59,13 +64,14 @@ filter_template = Template(
 class GCPLogs:
     def __init__(self, **kwargs) -> None:
         self.client, self.project = _initialize_client(**kwargs)
-        self.watch_interval = 1
+        self.MAX_EVENTS_PER_CALL = 10000
 
     def get_logs(
         self, resources: Tuple[str], event_start: str, filter_pattern: str, watch: bool
-    ) -> None:
-        project = self.client.project_path(self.project)
+    ):
+        do_wait = object()
 
+        project = self.client.project_path(self.project)
         parsed_datetime = self.parse_datetime(event_start)
 
         custom_filter = filter_template.render(
@@ -74,18 +80,52 @@ class GCPLogs:
             custom_filter=filter_pattern,
         )
 
-        for element in self.client.list_log_entries([project], filter_=custom_filter):
-            value = (
-                element.json_payload or element.proto_payload or element.text_payload
-            )
-            click.echo(
-                "{0} {1} {2} {3}".format(
-                    colored(_convert_timestamp(element.timestamp.seconds), "blue"),
-                    colored(element.resource.type, "yellow"),
-                    colored(LogSeverity(element.severity).name, "cyan"),
-                    protobuf_to_dict(value),
+        def generator():
+            interleaving_sanity = deque(maxlen=self.MAX_EVENTS_PER_CALL)
+            while True:
+                response = self.client.list_log_entries(
+                    [project], filter_=custom_filter
                 )
-            )
+
+                for event in response:
+                    if event.insert_id not in interleaving_sanity:
+                        interleaving_sanity.append(event.insert_id)
+                        yield event
+                else:
+                    yield do_wait
+
+        def consumer():
+            for event in generator():
+                if event is do_wait:
+                    if watch:
+                        time.sleep(1)
+                        continue
+                    else:
+                        return
+
+                value = event.json_payload or event.proto_payload or event.text_payload
+
+                click.echo(
+                    "{0} {1} {2} {3}".format(
+                        colored(_convert_timestamp(event.timestamp.seconds), "blue"),
+                        colored(event.resource.type, "yellow"),
+                        colored(LogSeverity(event.severity).name, "cyan"),
+                        protobuf_to_dict(value),
+                    )
+                )
+
+                try:
+                    sys.stdout.flush()
+                except IOError as e:
+                    if e.errno == errno.EPIPE:
+                        os._exit(0)
+                    else:
+                        raise
+
+        try:
+            consumer()
+        except KeyboardInterrupt:
+            os._exit(0)
 
     def parse_datetime(self, datetime_text):
 

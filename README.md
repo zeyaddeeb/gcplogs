@@ -19,6 +19,9 @@ More advanced example:
 
 ``` bash
 gcplogs get ml_job --event-start '2 mins ago' --filter-pattern 'protoPayload:unicorns'
+
+gcplogs get ml_job --event-start '2 mins ago' --filter-pattern 'protoPayload:unicorns' --project 'rainbows' --credentials '/cool-kids.json'
+
 ```
 
 Installation

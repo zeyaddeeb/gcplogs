@@ -8,6 +8,9 @@ grpcio = "*"
 pytest = "*"
 dateparser = "*"
 jinja2 = "*"
+black = "*"
+flake8 = "*"
+pylint = "*"
 
 [packages]
 

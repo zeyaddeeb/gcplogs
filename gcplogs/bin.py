@@ -68,7 +68,7 @@ def cli():
 
     """,
 )
-@click.option("--watch", "-w", is_flag=True)
+@click.option("--watch", "-w", default=False, is_flag=True)
 @common_options
 def get_logs(resources, event_start, filter_pattern, watch, **kwargs):
     logs = GCPLogs(**kwargs)
