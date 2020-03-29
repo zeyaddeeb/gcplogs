@@ -14,7 +14,7 @@ install_requires = [
 
 setup(
     name="gcplogs",
-    version="0.0.2",
+    version="0.0.3",
     url="https://github.com/zeyaddeeb/gcplogs",
     license="MIT",
     author="Zeyad Deeb",
