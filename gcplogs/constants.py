@@ -124,3 +124,15 @@ available_resources = [
     "serviceuser_service",
     "serviceusage_service",
 ]
+
+severity = [
+    "DEFAULT",
+    "DEBUG",
+    "INFO",
+    "NOTICE",
+    "WARNING",
+    "ERROR",
+    "CRITICAL",
+    "ALERT",
+    "EMERGENCY",
+]

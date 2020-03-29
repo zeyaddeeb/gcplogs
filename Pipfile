@@ -6,7 +6,8 @@ click = "*"
 click-completion = "*"
 grpcio = "*"
 pytest = "*"
-python-dateutil = "*"
+dateparser = "*"
+jinja2 = "*"
 
 [packages]
 

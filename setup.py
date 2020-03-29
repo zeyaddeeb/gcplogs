@@ -7,7 +7,8 @@ install_requires = [
     "click-completion>=0.5.2",
     "termcolor>=1.1.0",
     "grpcio>=1.27.2",
-    "python-dateutil>=2.8.1",
+    "dateparser>=0.7.4",
+    "Jinja2>=2.11.1",
 ]
 
 
@@ -34,6 +35,6 @@ setup(
         "Operating System :: OS Independent",
         "Topic :: Utilities",
     ],
-    entry_points={"console_scripts": ["gcplogs = gcplogs.bin:cli",]},
+    entry_points={"console_scripts": ["gcplogs = gcplogs.bin:cli"]},
     zip_safe=False,
 )

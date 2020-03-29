@@ -4,8 +4,22 @@
 
 `gcplogs` is a simple command line tool for querying logging events from [Google Cloud Logging](https://cloud.google.com/logging/docs).
 
-Example
+Examples
 -------
+
+``` bash
+gcplogs get gce_instance --event-start='1 week ago'
+```
+
+``` bash
+gcplogs get gce_instance --event-start='1 min ago' --watch
+```
+
+More advanced example:
+
+``` bash
+gcplogs get ml_job --event-start '2 mins ago' --filter-pattern 'protoPayload:unicorns'
+```
 
 Installation
 ------------

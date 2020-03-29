@@ -48,9 +48,28 @@ def cli():
 
 @cli.command("get")
 @click.argument("resources", nargs=-1, type=click.Choice(available_resources))
-@click.option("--filter-pattern", "-f", default=None)
+@click.option(
+    "--event-start", "-e", default="1 min ago", help="Start time of event log"
+)
+@click.option(
+    "--filter-pattern",
+    "-f",
+    default=None,
+    help="""
+
+    Filter pattern for event.
+
+    Example:
+
+    protoPayload:0.0.0.0/8
+
+    For more advanced options see Google documentation:
+    https://cloud.google.com/logging/docs/view/building-queries
+
+    """,
+)
 @click.option("--watch", "-w", is_flag=True)
 @common_options
-def get_logs(resources, watch, filter_pattern, **kwargs):
+def get_logs(resources, event_start, filter_pattern, watch, **kwargs):
     logs = GCPLogs(**kwargs)
-    logs.get_logs(resources, watch, filter_pattern)
+    logs.get_logs(resources, event_start, filter_pattern, watch)
